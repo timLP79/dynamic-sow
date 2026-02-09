@@ -7,10 +7,23 @@ An interactive web application for generating and exporting product flowcharts. 
 ## Features
 
 - **Interactive Product Selection**: Click on product cards to instantly view flowcharts
-- **Live Rendering**: Flowcharts render in real-time using Mermaid.js
-- **Multiple Export Formats**: Download as SVG (scalable vector) or PNG (high-resolution image)
+- **Live Rendering**: Flowcharts render in real-time using Mermaid.js with custom theming
+- **Multiple Export Formats**: Download as SVG (scalable vector) or PNG (high-resolution 2x image)
+- **Smart Layout**: Subgraph grouping for clean left-to-right flow visualization
 - **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Extensible Architecture**: Easy to add new products and flowcharts
+- **Extensible Architecture**: Data-driven design makes adding new products simple
+- **No Build Required**: Pure HTML/CSS/JavaScript with CDN libraries
+
+## Current Implementation
+
+**NAO (Network Access Orchestrator)** - Fully implemented flowchart showing:
+- Website signup flow with form fields (FirstName, LastName, Email, Phone)
+- DDC (Digital Data Collector) integration
+- NAO API with Name Template and MFA processing
+- K360 Policies & Segments decision engine
+- Three outcomes: ALLOW, BLOCK, CHALLENGE
+- MFA challenge flow with Kount or Client verification
+- Success/Failure paths leading to Continue or End states
 
 ## Quick Start
 
@@ -68,14 +81,27 @@ dynamic-sow/
 ├── css/
 │   └── main.css           # All styles (layout, components, responsive)
 ├── js/
-│   ├── flowchart-data.js  # Product definitions and Mermaid code
-│   ├── renderer.js        # Mermaid.js rendering logic
+│   ├── app.js             # Main application controller
 │   ├── exporter.js        # SVG/PNG export functionality
-│   └── app.js             # Main application controller
-├── nao.txt                 # Original NAO flowchart reference
-├── PXL_20260209_213536921.jpg  # Original whiteboard design photo
-└── README.md              # This file
+│   ├── flowchart-data.js  # Product definitions and Mermaid code
+│   └── renderer.js        # Mermaid.js rendering logic
+├── plan/
+│   ├── NAO.txt            # NAO flowchart Mermaid code reference
+│   └── PXL_20260209_213536921.jpg  # Original whiteboard design photo
+└── README.md              # Documentation
+
+4 directories, 9 files
 ```
+
+### Key Files
+
+- **index.html**: Single-page application with two-panel layout (product selection + flowchart display)
+- **css/main.css**: Complete styling system with CSS Grid, responsive breakpoints, and Mermaid customization
+- **js/flowchart-data.js**: Central repository for all product flowchart definitions (currently: NAO)
+- **js/renderer.js**: Mermaid.js initialization and flowchart rendering engine
+- **js/exporter.js**: Export functionality for SVG and PNG formats with auto-generated filenames
+- **js/app.js**: Application controller managing UI state, product selection, and module coordination
+- **plan/**: Design reference materials (original whiteboard photo and Mermaid source)
 
 ## Usage
 
@@ -182,10 +208,14 @@ Full documentation: [Mermaid.js Flowchart Docs](https://mermaid.js.org/syntax/fl
 
 ## Technology Stack
 
-- **HTML5/CSS3/JavaScript (ES6 Modules)**: Core application
-- **Mermaid.js v10**: Flowchart rendering engine
-- **html2canvas**: PNG export functionality
-- **No Build Tools**: Pure static files, no npm/webpack needed
+- **HTML5/CSS3/JavaScript (ES6 Modules)**: Core application (~500 lines)
+- **Mermaid.js v10**: Flowchart rendering engine (CDN)
+- **html2canvas 1.4.1**: PNG export functionality (CDN)
+- **CSS Grid**: Two-panel responsive layout
+- **Zero Dependencies**: No npm, webpack, or build process
+- **Static Files Only**: Can be served from any web server or GitHub Pages
+
+**Total Application Size**: ~15KB (before compression, excluding CDN libraries)
 
 ## Browser Compatibility
 
@@ -282,4 +312,33 @@ For questions or issues, please open a GitHub issue or contact the maintainer.
 
 ---
 
+## Quick Reference
+
+### Common Commands
+
+**Start Local Server:**
+```bash
+cd /run/host/var/home/tim/work-projects/dynamic-sow
+python3 -m http.server 8000
+```
+
+**Test Mermaid Syntax:**
+- Online Editor: https://mermaid.live
+- Documentation: https://mermaid.js.org/syntax/flowchart.html
+
+**Export Filenames:**
+- Format: `{product-name}-flowchart-{YYYY-MM-DD}.{svg|png}`
+- Example: `nao-flowchart-2026-02-09.svg`
+
+### File Locations
+
+- Add products: `js/flowchart-data.js`
+- Styling: `css/main.css`
+- Mermaid config: `js/renderer.js`
+- Reference designs: `plan/`
+
+---
+
 **Built with ❤️ for dynamic statement of work generation**
+
+*Version 1.0 - February 2026*
