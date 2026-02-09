@@ -1,0 +1,331 @@
+/* ===========================
+   CSS Variables & Reset
+   =========================== */
+
+:root {
+  /* Primary colors */
+  --primary-blue: #2563eb;
+  --primary-blue-hover: #1d4ed8;
+  --primary-blue-light: #dbeafe;
+
+  /* Neutral colors */
+  --bg-light: #f8fafc;
+  --bg-white: #ffffff;
+  --text-dark: #1e293b;
+  --text-gray: #64748b;
+  --text-light: #94a3b8;
+  --border-gray: #e2e8f0;
+  --border-dark: #cbd5e1;
+
+  /* Status colors */
+  --success-green: #10b981;
+  --accent-purple: #8b5cf6;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-dark);
+  overflow: hidden;
+}
+
+/* ===========================
+   Main Layout
+   =========================== */
+
+.app-container {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ===========================
+   Left Panel: Product Selection
+   =========================== */
+
+.product-selection {
+  background: var(--bg-light);
+  border-right: 2px solid var(--border-gray);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.product-selection .panel-header {
+  padding: var(--space-xl) var(--space-lg);
+  border-bottom: 1px solid var(--border-gray);
+  background: var(--bg-white);
+}
+
+.product-selection .panel-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: var(--space-xs);
+}
+
+.product-selection .subtitle {
+  font-size: 0.875rem;
+  color: var(--text-gray);
+}
+
+/* Product Cards */
+.product-cards {
+  flex: 1;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.product-card {
+  background: var(--bg-white);
+  border: 2px solid var(--border-gray);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.product-card:hover {
+  border-color: var(--primary-blue-light);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+  transform: translateY(-2px);
+}
+
+.product-card.active {
+  border-color: var(--primary-blue);
+  background: var(--primary-blue-light);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.product-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.product-card.active .product-card__title {
+  color: var(--primary-blue);
+}
+
+.product-card__description {
+  font-size: 0.875rem;
+  color: var(--text-gray);
+  line-height: 1.5;
+}
+
+/* Export Actions */
+.export-actions {
+  padding: var(--space-lg);
+  border-top: 1px solid var(--border-gray);
+  background: var(--bg-white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.btn {
+  padding: var(--space-sm) var(--space-lg);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.btn-primary {
+  background: var(--primary-blue);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn:disabled {
+  background: var(--border-gray);
+  color: var(--text-light);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===========================
+   Right Panel: Flowchart Display
+   =========================== */
+
+.flowchart-display {
+  background: var(--bg-white);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.flowchart-display .panel-header {
+  padding: var(--space-xl) var(--space-xl);
+  border-bottom: 2px solid var(--border-gray);
+  background: var(--bg-white);
+}
+
+.flowchart-display .panel-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Flowchart Container */
+.flowchart-container {
+  flex: 1;
+  padding: var(--space-xl);
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Placeholder State */
+.placeholder {
+  text-align: center;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  max-width: 400px;
+}
+
+.placeholder svg {
+  opacity: 0.3;
+  stroke: var(--text-light);
+}
+
+.placeholder p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Mermaid Diagram Styles */
+#flowchartContainer .mermaid-diagram {
+  background: var(--bg-white);
+  padding: var(--space-xl);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#flowchartContainer svg {
+  width: 100%;
+  height: auto;
+  min-width: 600px;
+}
+
+/* Loading State */
+.loading {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-gray);
+  border-top-color: var(--primary-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .product-selection {
+    border-right: none;
+    border-bottom: 2px solid var(--border-gray);
+    max-height: 50vh;
+  }
+
+  .product-cards {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .product-card {
+    min-width: 200px;
+  }
+
+  .export-actions {
+    flex-direction: row;
+  }
+
+  .flowchart-container {
+    padding: var(--space-md);
+  }
+}
+
+/* ===========================
+   Scrollbar Styling
+   =========================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-dark);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-gray);
+}

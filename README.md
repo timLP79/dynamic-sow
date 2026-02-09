@@ -1,0 +1,285 @@
+# Dynamic SOW - Flowchart Generator
+
+An interactive web application for generating and exporting product flowcharts. Select a product to view its architecture diagram, then export as SVG or PNG to share with clients.
+
+![Dynamic SOW Screenshot](screenshot-placeholder.png)
+
+## Features
+
+- **Interactive Product Selection**: Click on product cards to instantly view flowcharts
+- **Live Rendering**: Flowcharts render in real-time using Mermaid.js
+- **Multiple Export Formats**: Download as SVG (scalable vector) or PNG (high-resolution image)
+- **Responsive Design**: Works on desktop, tablet, and mobile devices
+- **Extensible Architecture**: Easy to add new products and flowcharts
+
+## Quick Start
+
+### Running Locally
+
+**IMPORTANT:** Due to ES6 module security restrictions, you must use a local web server. You cannot simply open `index.html` in your browser.
+
+**Option 1: Python Web Server (Recommended)**
+```bash
+cd /path/to/dynamic-sow
+python3 -m http.server 8000
+```
+Then open http://localhost:8000 in your browser.
+
+**Option 2: Node.js http-server**
+```bash
+npx http-server -p 8000
+```
+
+**Option 3: VS Code Live Server**
+If using VS Code, install the "Live Server" extension and click "Go Live" button.
+
+### Using the App
+
+1. Click on a product card (e.g., NAO) in the left panel
+2. The flowchart renders automatically in the right panel
+3. Use "Download SVG" or "Download PNG" buttons to export
+4. Stop the server with `Ctrl+C` when done
+
+### Deploying to GitHub Pages
+
+GitHub Pages serves files over HTTP, so ES6 modules work perfectly!
+
+1. Create a new GitHub repository
+2. Initialize git and push files:
+   ```bash
+   cd /path/to/dynamic-sow
+   git init
+   git add .
+   git commit -m "Initial commit: Dynamic SOW Flowchart Generator"
+   git remote add origin https://github.com/yourusername/dynamic-sow.git
+   git push -u origin main
+   ```
+3. Go to repository **Settings** → **Pages**
+4. Set source to `main` branch, root folder
+5. Your app will be live at `https://yourusername.github.io/dynamic-sow/`
+
+**Note:** No special configuration needed - it works as a static site!
+
+## Project Structure
+
+```
+dynamic-sow/
+├── index.html              # Main application page
+├── css/
+│   └── main.css           # All styles (layout, components, responsive)
+├── js/
+│   ├── flowchart-data.js  # Product definitions and Mermaid code
+│   ├── renderer.js        # Mermaid.js rendering logic
+│   ├── exporter.js        # SVG/PNG export functionality
+│   └── app.js             # Main application controller
+├── nao.txt                 # Original NAO flowchart reference
+├── PXL_20260209_213536921.jpg  # Original whiteboard design photo
+└── README.md              # This file
+```
+
+## Usage
+
+### Viewing Flowcharts
+
+1. The left panel shows available product cards
+2. Click on any product card to view its flowchart
+3. The selected card will highlight in blue
+4. The flowchart renders automatically in the right panel
+
+### Exporting Flowcharts
+
+**SVG Export** (Recommended for editing):
+- Click "Download SVG"
+- File saves as `productname-flowchart-YYYY-MM-DD.svg`
+- Can be opened in browsers, Illustrator, Inkscape, etc.
+- Scalable vector format (infinite zoom without quality loss)
+
+**PNG Export** (Best for emails/presentations):
+- Click "Download PNG"
+- File saves as `productname-flowchart-YYYY-MM-DD.png`
+- High-resolution (2x) bitmap image
+- Ready to embed in emails, documents, slides
+
+## Adding New Products
+
+The application is designed to make adding new products easy:
+
+### Step 1: Add Product Data
+
+Open `js/flowchart-data.js` and add a new entry:
+
+```javascript
+export const FlowchartData = {
+  NAO: { /* existing NAO data */ },
+
+  // Add your new product here:
+  LOGO: {
+    id: 'logo',
+    name: 'Logo',
+    description: 'Logo product architecture flow',
+    mermaidCode: `flowchart TD
+      A[Start] --> B[Process]
+      B --> C[End]`
+  }
+};
+```
+
+### Step 2: That's It!
+
+The product card will automatically appear in the UI. No other code changes needed.
+
+### Tips for Creating Good Flowcharts
+
+**Layout Best Practices:**
+- Use `flowchart LR` for left-to-right flow (most readable for process flows)
+- Group related items in subgraphs: `subgraph Name[" "] ... end`
+- Use empty labels `[" "]` for cleaner subgraph appearance
+- Stack items vertically in subgraphs with `direction TB` to save horizontal space
+- Use `<br/>` for multi-line text in nodes
+
+**Example with subgraphs:**
+```javascript
+mermaidCode: `flowchart LR
+    subgraph Input[" "]
+        A[Website]
+        B[DDC]
+    end
+
+    C[API]
+
+    subgraph Outcomes[" "]
+        D[ALLOW]
+        E[BLOCK]
+        F[CHALLENGE]
+    end
+
+    Input --> C --> Outcomes
+`
+```
+
+### Mermaid Syntax Guide
+
+Mermaid uses simple text syntax to create diagrams. Here are some basics:
+
+```
+flowchart LR                    # Left-to-right flow
+flowchart TD                    # Top-down flow
+
+A[Box] --> B[Another Box]       # Arrow connection
+A -.-> B                        # Dotted line
+A ==> B                         # Thick arrow
+
+C{Decision}                     # Diamond shape
+D([Rounded])                    # Rounded box
+E[(Database)]                   # Cylinder shape
+
+subgraph Group1                 # Group boxes together
+  F --> G
+end
+```
+
+Full documentation: [Mermaid.js Flowchart Docs](https://mermaid.js.org/syntax/flowchart.html)
+
+## Technology Stack
+
+- **HTML5/CSS3/JavaScript (ES6 Modules)**: Core application
+- **Mermaid.js v10**: Flowchart rendering engine
+- **html2canvas**: PNG export functionality
+- **No Build Tools**: Pure static files, no npm/webpack needed
+
+## Browser Compatibility
+
+- Chrome 90+ ✅
+- Firefox 88+ ✅
+- Safari 14+ ✅
+- Edge 90+ ✅
+
+Requires modern browser with ES6 module support.
+
+## Customization
+
+### Changing Colors
+
+Edit CSS variables in `css/main.css`:
+
+```css
+:root {
+  --primary-blue: #2563eb;      /* Change primary color */
+  --bg-light: #f8fafc;          /* Background color */
+  --text-dark: #1e293b;         /* Text color */
+}
+```
+
+### Changing Mermaid Theme
+
+Edit `js/renderer.js`:
+
+```javascript
+window.mermaid.initialize({
+  theme: 'default',  // Options: default, neutral, dark, forest
+  // ... other settings
+});
+```
+
+## Troubleshooting
+
+**Product cards don't appear / Blank page:**
+- ⚠️ **MOST COMMON ISSUE:** You must use a local web server (see Quick Start)
+- Opening `index.html` directly (`file://` protocol) blocks ES6 modules due to CORS
+- Run `python3 -m http.server 8000` and access via `http://localhost:8000`
+- Check browser console (F12) for CORS errors
+
+**Flowchart doesn't render:**
+- Check browser console for errors
+- Verify Mermaid syntax is valid (use [Mermaid Live Editor](https://mermaid.live) to test)
+- Ensure internet connection (libraries load from CDN)
+- Try refreshing the page after code changes
+
+**Flowchart layout issues:**
+- Use subgraphs to group related items
+- For compact horizontal layouts, stack subgraph contents vertically: `direction TB`
+- Avoid very long node labels - use `<br/>` to break into multiple lines
+- Test your Mermaid code at https://mermaid.live before adding to app
+
+**Export buttons don't work:**
+- Select a product first (buttons are disabled until flowchart loads)
+- Check that flowchart has rendered successfully
+- Verify browser allows downloads (check browser settings)
+- For PNG export, ensure html2canvas loaded (check console)
+
+**Mobile layout issues:**
+- App is responsive and should work on mobile
+- Try landscape orientation for better viewing
+- Flowcharts may be scrollable on small screens
+
+## Future Enhancements
+
+Potential features to add:
+- [ ] Multiple flowchart templates per product
+- [ ] Dark mode toggle
+- [ ] Shareable URLs with query parameters
+- [ ] Flowchart customization (colors, themes)
+- [ ] Print-optimized CSS
+- [ ] Zoom/pan controls for large diagrams
+- [ ] Client branding customization
+
+## License
+
+This project is open source and available for use in commercial and personal projects.
+
+## Contributing
+
+To contribute:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## Support
+
+For questions or issues, please open a GitHub issue or contact the maintainer.
+
+---
+
+**Built with ❤️ for dynamic statement of work generation**

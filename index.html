@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic SOW - Flowchart Generator</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Left Panel: Product Selection -->
+    <aside class="product-selection">
+      <header class="panel-header">
+        <h1>Dynamic SOW</h1>
+        <p class="subtitle">Select a product to view flowchart</p>
+      </header>
+
+      <div class="product-cards" id="productCards">
+        <!-- Product cards will be generated dynamically by JavaScript -->
+      </div>
+
+      <footer class="export-actions">
+        <button id="exportSVG" class="btn btn-primary" disabled>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 11V3M8 11L5 8M8 11L11 8"/>
+            <path d="M2 13h12"/>
+          </svg>
+          Download SVG
+        </button>
+        <button id="exportPNG" class="btn btn-primary" disabled>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 11V3M8 11L5 8M8 11L11 8"/>
+            <path d="M2 13h12"/>
+          </svg>
+          Download PNG
+        </button>
+      </footer>
+    </aside>
+
+    <!-- Right Panel: Flowchart Display -->
+    <main class="flowchart-display">
+      <header class="panel-header">
+        <h2 id="flowchartTitle">Flowchart</h2>
+      </header>
+
+      <div class="flowchart-container" id="flowchartContainer">
+        <div class="placeholder">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="8" y="16" width="48" height="32" rx="4"/>
+            <path d="M16 24h32M16 32h32M16 40h24"/>
+          </svg>
+          <p>Select a product from the left panel to view its flowchart</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Libraries -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    window.mermaid = mermaid;
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <!-- Application Modules -->
+  <script type="module" src="js/flowchart-data.js"></script>
+  <script type="module" src="js/renderer.js"></script>
+  <script type="module" src="js/exporter.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

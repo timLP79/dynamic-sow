@@ -1,0 +1,32 @@
+flowchart LR
+    subgraph Group1 [ ]
+        direction LR
+        C[<u>-- Website --</u>
+        <hr>
+        FirstName
+        LastName
+        Email
+        Phone
+        <hr>
+        -- SIGNUP --]
+        D[DDC]
+    end
+    Group1 --  NAO API
+    Name Template
+    MFA  --> E[K360 Policies &
+    Segments] --> Group2
+    subgraph Group2 [ ]
+        direction LR 
+        F[ALLOW,] ~~~ G[BLOCK] ~~~ H[CHALLENGE]
+    end
+    I[Continue]
+    J[End]
+    F --> I 
+    G --> J
+    H --> K[<u>MFA</u>
+    <h1>
+    Kount or Client]
+    K --> |Success| L[ALLOW]
+    K --> |Failure| M[BLOCK]
+    M --> J
+    L --> I
