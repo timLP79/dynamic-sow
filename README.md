@@ -2,7 +2,7 @@
 
 An interactive web application for generating and exporting product flowcharts. Select a product to view its architecture diagram, then export as SVG or PNG to share with clients.
 
-![Dynamic SOW Screenshot](screenshot-placeholder.png)
+![Original Whiteboard Design](plan/PXL_20260209_213536921.jpg)
 
 ## Features
 
