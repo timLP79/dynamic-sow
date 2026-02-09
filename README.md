@@ -339,6 +339,4 @@ python3 -m http.server 8000
 
 ---
 
-**Built with ❤️ for dynamic statement of work generation**
-
 *Version 1.0 - February 2026*
