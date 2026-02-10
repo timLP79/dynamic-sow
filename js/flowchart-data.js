@@ -9,7 +9,7 @@ export const FlowchartData = {
   NAO: {
     id: 'nao',
     name: 'NAO',
-    description: 'Network Access Orchestrator - Authentication and access control flow',
+    description: 'Network Account Opening control flow',
     mermaidCode: `flowchart LR
     subgraph Input[" "]
         A["-- Website --<br/><br/>FirstName<br/>LastName<br/>Email<br/>Phone<br/><br/>-- SIGNUP --"]
