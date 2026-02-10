@@ -16,7 +16,7 @@ An interactive web application for generating and exporting product flowcharts. 
 
 ## Current Implementation
 
-**NAO (Network Access Orchestrator)** - Fully implemented flowchart showing:
+**NAO (New Account Opening)** - Fully implemented flowchart showing:
 - Website signup flow with form fields (FirstName, LastName, Email, Phone)
 - DDC (Digital Data Collector) integration
 - NAO API with Name Template and MFA processing
