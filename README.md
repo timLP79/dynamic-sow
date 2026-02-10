@@ -18,7 +18,7 @@ An interactive web application for generating and exporting product flowcharts. 
 
 **NAO (New Account Opening)** - Fully implemented flowchart showing:
 - Website signup flow with form fields (FirstName, LastName, Email, Phone)
-- DDC (Digital Data Collector) integration
+- DDC (Data Device Collector) integration
 - NAO API with Name Template and MFA processing
 - K360 Policies & Segments decision engine
 - Three outcomes: ALLOW, BLOCK, CHALLENGE
