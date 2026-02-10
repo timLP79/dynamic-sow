@@ -25,6 +25,10 @@ An interactive web application for generating and exporting product flowcharts. 
 - MFA challenge flow with Kount or Client verification
 - Success/Failure paths leading to Continue or End states
 
+**📋 Project Planning:** See [plan.md](plan.md) for detailed roadmap, backlog, and implementation tracking.
+**🎯 GitHub Project Board:** [View active tasks and progress](https://github.com/timLP79/dynamic-sow/projects)
+**📝 GitHub Issues:** [View all issues](https://github.com/timLP79/dynamic-sow/issues)
+
 ## Quick Start
 
 ### Running Locally
@@ -57,19 +61,10 @@ If using VS Code, install the "Live Server" extension and click "Go Live" button
 
 GitHub Pages serves files over HTTP, so ES6 modules work perfectly!
 
-1. Create a new GitHub repository
-2. Initialize git and push files:
-   ```bash
-   cd /path/to/dynamic-sow
-   git init
-   git add .
-   git commit -m "Initial commit: Dynamic SOW Flowchart Generator"
-   git remote add origin https://github.com/yourusername/dynamic-sow.git
-   git push -u origin main
-   ```
-3. Go to repository **Settings** → **Pages**
-4. Set source to `main` branch, root folder
-5. Your app will be live at `https://yourusername.github.io/dynamic-sow/`
+1. Repository: https://github.com/timLP79/dynamic-sow
+2. Go to repository **Settings** → **Pages**
+3. Set source to `main` branch, root folder
+4. Your app will be live at `https://timLP79.github.io/dynamic-sow/`
 
 **Note:** No special configuration needed - it works as a static site!
 
@@ -88,9 +83,10 @@ dynamic-sow/
 ├── plan/
 │   ├── NAO.txt            # NAO flowchart Mermaid code reference
 │   └── PXL_20260209_213536921.jpg  # Original whiteboard design photo
-└── README.md              # Documentation
+├── plan.md                # Project roadmap and tracking
+└── README.md              # User documentation
 
-4 directories, 9 files
+4 directories, 10 files
 ```
 
 ### Key Files
@@ -336,6 +332,10 @@ python3 -m http.server 8000
 - Styling: `css/main.css`
 - Mermaid config: `js/renderer.js`
 - Reference designs: `plan/`
+- Project roadmap: `plan.md`
+- GitHub Repository: [timLP79/dynamic-sow](https://github.com/timLP79/dynamic-sow)
+- GitHub Issues: [View all issues](https://github.com/timLP79/dynamic-sow/issues)
+- GitHub Project Board: [View board](https://github.com/timLP79/dynamic-sow/projects)
 
 ---
 
