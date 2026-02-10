@@ -16,7 +16,6 @@ export const FlowchartData = {
         B[DDC]
     end
 
-    C["NAO API<br/>Name Template<br/>MFA"]
     D["K360 Policies &<br/>Segments"]
 
     subgraph Outcomes[" "]
@@ -31,8 +30,7 @@ export const FlowchartData = {
     K[Continue]
     L[End]
 
-    Input --> C
-    C --> D
+    Input -->|NAO API<br/>Name Template<br/>MFA| D
     D --> Outcomes
     E --> K
     G --> H
