@@ -64,7 +64,7 @@ dynamic-sow/
 ### NAO Product Implementation
 - [x] Complete NAO flowchart [#6](https://github.com/timLP79/dynamic-sow/issues/6) ✓ with:
   - Website signup form fields (FirstName, LastName, Email, Phone)
-  - DDC (Digital Data Collector) integration
+  - DDC (Data Device Collector) integration
   - NAO API with Name Template and MFA processing
   - K360 Policies & Segments decision engine
   - Three outcomes: ALLOW, BLOCK, CHALLENGE
