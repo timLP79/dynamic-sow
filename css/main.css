@@ -46,7 +46,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-dark);
-  overflow: hidden;
 }
 
 /* ===========================
@@ -193,13 +192,16 @@ body {
   background: var(--bg-white);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  min-width: 0;
 }
 
 .flowchart-display .panel-header {
   padding: var(--space-xl) var(--space-xl);
   border-bottom: 2px solid var(--border-gray);
   background: var(--bg-white);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
 }
 
 .flowchart-display .panel-header h2 {
@@ -208,14 +210,48 @@ body {
   color: var(--text-dark);
 }
 
+/* Hamburger Button (hidden on desktop) */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text-dark);
+  border-radius: 2px;
+  transition: all var(--transition-normal);
+}
+
+/* Overlay (hidden by default) */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
 /* Flowchart Container */
 .flowchart-container {
   flex: 1;
   padding: var(--space-xl);
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
   width: 100%;
 }
 
@@ -247,6 +283,7 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   width: 100%;
+  min-width: 900px;
   min-height: 400px;
   display: flex;
   align-items: center;
@@ -255,8 +292,8 @@ body {
 
 #flowchartContainer svg {
   width: 100%;
+  min-width: 900px;
   height: auto;
-  min-width: 600px;
 }
 
 /* Loading State */
@@ -281,22 +318,42 @@ body {
 @media (max-width: 768px) {
   .app-container {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
   }
 
+  /* Left panel slides off-screen, overlays when open */
   .product-selection {
-    border-right: none;
-    border-bottom: 2px solid var(--border-gray);
-    max-height: 50vh;
+    position: fixed;
+    top: 0;
+    left: -380px;
+    height: 100%;
+    width: 320px;
+    z-index: 100;
+    border-right: 2px solid var(--border-gray);
+    transition: left var(--transition-normal);
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-selection.is-open {
+    left: 0;
+  }
+
+  /* Show overlay when panel is open */
+  .nav-overlay {
+    display: block;
+  }
+
+  .nav-overlay.is-open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Show hamburger button */
+  .hamburger-btn {
+    display: flex;
   }
 
   .product-cards {
-    flex-direction: row;
-    overflow-x: auto;
-  }
-
-  .product-card {
-    min-width: 200px;
+    flex-direction: column;
   }
 
   .export-actions {

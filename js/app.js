@@ -15,7 +15,10 @@ const App = {
    * Initialize the application
    */
   init() {
-    // Wait for Mermaid to be loaded
+    // Set up hamburger immediately - does not depend on Mermaid
+    this.setupHamburger();
+
+    // Wait for Mermaid to be loaded before rendering
     this.waitForMermaid().then(() => {
       // Initialize renderer
       FlowchartRenderer.init('flowchartContainer');
@@ -113,6 +116,9 @@ const App = {
 
     // Enable export buttons
     this.enableExportButtons();
+
+    // Close nav on mobile after selecting a product
+    this.closeNav();
   },
 
   /**
@@ -141,6 +147,40 @@ const App = {
     if (titleElement) {
       titleElement.textContent = `${productName} Flowchart`;
     }
+  },
+
+  /**
+   * Set up hamburger menu toggle for mobile
+   */
+  setupHamburger() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navOverlay = document.getElementById('navOverlay');
+    const productSelection = document.querySelector('.product-selection');
+
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', () => this.toggleNav());
+    }
+
+    if (navOverlay) {
+      navOverlay.addEventListener('click', () => this.closeNav());
+    }
+  },
+
+  toggleNav() {
+    const productSelection = document.querySelector('.product-selection');
+    const navOverlay = document.getElementById('navOverlay');
+    const isOpen = productSelection.classList.contains('is-open');
+    isOpen ? this.closeNav() : this.openNav();
+  },
+
+  openNav() {
+    document.querySelector('.product-selection').classList.add('is-open');
+    document.getElementById('navOverlay').classList.add('is-open');
+  },
+
+  closeNav() {
+    document.querySelector('.product-selection').classList.remove('is-open');
+    document.getElementById('navOverlay').classList.remove('is-open');
   },
 
   /**

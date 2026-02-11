@@ -24,7 +24,7 @@ export const FlowchartData = {
         NAO_G[CHALLENGE]
     end
 
-    NAO_H["MFA<br/>Kount or Client"]
+    NAO_H{"MFA<br/>Kount or Client"}
     NAO_I[ALLOW]
     NAO_J[BLOCK]
     NAO_K[Continue]
