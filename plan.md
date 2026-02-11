@@ -83,6 +83,7 @@ dynamic-sow/
 - [x] Modular architecture (data, rendering, export, controller) [#1-8](https://github.com/timLP79/dynamic-sow/issues) ✓
 - [x] Zero build process - just open and run [#7](https://github.com/timLP79/dynamic-sow/issues/7) ✓
 - [x] GitHub Pages deployment ready [#7](https://github.com/timLP79/dynamic-sow/issues/7) ✓
+- [x] `PRODUCTNAME_NodeID` naming convention established for all flowcharts [#21](https://github.com/timLP79/dynamic-sow/issues/21) ✓
 
 ---
 
@@ -263,20 +264,25 @@ dynamic-sow/
 
 1. **Create Mermaid code** in `plan/` directory (e.g., `LOGO.txt`)
 2. **Test in Mermaid Live Editor:** https://mermaid.live
-3. **Add to `js/flowchart-data.js`:**
+3. **Apply node ID prefix convention** - prefix all node IDs with `PRODUCTNAME_` [#21](https://github.com/timLP79/dynamic-sow/issues/21):
+   ```
+   LOGO_Input, LOGO_A, LOGO_B, LOGO_Outcomes, LOGO_E ...
+   ```
+4. **Add to `js/flowchart-data.js`:**
    ```javascript
    LOGO: {
      id: 'logo',
      name: 'Logo',
      description: 'Logo product architecture flow',
      mermaidCode: `flowchart LR
-       // your code here
+       LOGO_A[Website] --> LOGO_B[Process]
      `
    }
    ```
-4. **Refresh browser** - product card appears automatically
-5. **Test export** - verify SVG and PNG work correctly
-6. **Commit and push** to GitHub
+5. **Refresh browser** - product card appears automatically
+6. **Test switching** between products to verify no ID conflicts
+7. **Test export** - verify SVG and PNG work correctly
+8. **Commit and push** to GitHub
 
 ### Testing Locally
 ```bash
@@ -333,7 +339,7 @@ git push origin main
 
 ## 📊 Issue Tracking Summary
 
-### ✅ Completed (8 issues closed)
+### ✅ Completed (9 issues closed)
 - [#1](https://github.com/timLP79/dynamic-sow/issues/1) - Implement two-panel responsive layout ✓
 - [#2](https://github.com/timLP79/dynamic-sow/issues/2) - Implement dynamic product card generation ✓
 - [#3](https://github.com/timLP79/dynamic-sow/issues/3) - Integrate Mermaid.js for live flowchart rendering ✓
@@ -342,6 +348,7 @@ git push origin main
 - [#6](https://github.com/timLP79/dynamic-sow/issues/6) - Implement NAO product flowchart ✓
 - [#7](https://github.com/timLP79/dynamic-sow/issues/7) - Create comprehensive documentation ✓
 - [#8](https://github.com/timLP79/dynamic-sow/issues/8) - Create project roadmap and tracking document ✓
+- [#21](https://github.com/timLP79/dynamic-sow/issues/21) - Document and enforce `PRODUCTNAME_NodeID` naming convention ✓
 
 ### 🔓 Open Issues (12 active)
 

@@ -139,9 +139,9 @@ export const FlowchartData = {
     id: 'logo',
     name: 'Logo',
     description: 'Logo product architecture flow',
-    mermaidCode: `flowchart TD
-      A[Start] --> B[Process]
-      B --> C[End]`
+    mermaidCode: `flowchart LR
+      LOGO_A[Start] --> LOGO_B[Process]
+      LOGO_B --> LOGO_C[End]`
   }
 };
 ```
@@ -150,32 +150,48 @@ export const FlowchartData = {
 
 The product card will automatically appear in the UI. No other code changes needed.
 
+### ⚠️ Node ID Naming Convention (Required)
+
+Every flowchart **must** prefix all node IDs with `PRODUCTNAME_` to avoid conflicts when switching between flowcharts. See [#21](https://github.com/timLP79/dynamic-sow/issues/21).
+
+```
+NAO flowchart:    NAO_Input,   NAO_A,   NAO_B,   NAO_D ...
+LOGIN flowchart:  LOGIN_Input, LOGIN_A, LOGIN_B, LOGIN_D ...
+SIG flowchart:    SIG_Input,   SIG_A,   SIG_B,   SIG_D ...
+DDC flowchart:    DDC_Input,   DDC_A,   DDC_B,   DDC_D ...
+```
+
+**Important distinction:**
+- **Node IDs** (the short identifiers like `NAO_A`) → must be unique across all flowcharts
+- **Node labels** (the visible text like `"-- Website --"`) → can be reused freely
+
+**Why?** Mermaid caches node IDs internally during a page session. Duplicate IDs across diagrams cause the second flowchart to fail silently.
+
 ### Tips for Creating Good Flowcharts
 
 **Layout Best Practices:**
 - Use `flowchart LR` for left-to-right flow (most readable for process flows)
-- Group related items in subgraphs: `subgraph Name[" "] ... end`
+- Group related items in subgraphs: `subgraph PROD_Name[" "] ... end`
 - Use empty labels `[" "]` for cleaner subgraph appearance
 - Stack items vertically in subgraphs with `direction TB` to save horizontal space
 - Use `<br/>` for multi-line text in nodes
+- Use `%%` for comments: `%%PROD_NodeA --> PROD_NodeB`
 
-**Example with subgraphs:**
+**Example with subgraphs and correct node IDs:**
 ```javascript
 mermaidCode: `flowchart LR
-    subgraph Input[" "]
-        A[Website]
-        B[DDC]
+    subgraph LOGO_Input[" "]
+        LOGO_A[Website]
+        LOGO_B[DDC]
     end
 
-    C[API]
-
-    subgraph Outcomes[" "]
-        D[ALLOW]
-        E[BLOCK]
-        F[CHALLENGE]
+    subgraph LOGO_Outcomes[" "]
+        LOGO_D[ALLOW]
+        LOGO_E[BLOCK]
+        LOGO_F[CHALLENGE]
     end
 
-    Input --> C --> Outcomes
+    LOGO_Input -->|API Call| LOGO_Outcomes
 `
 ```
 
