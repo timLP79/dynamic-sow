@@ -17,7 +17,7 @@ Interactive web application for generating and exporting product architecture fl
 | Component | Technology | Source |
 |-----------|-----------|--------|
 | Frontend Framework | Vanilla JavaScript (ES6 Modules) | Native |
-| Layout | CSS Grid | Native CSS |
+| UI Component Library | Bootstrap 5.3.3 | CDN |
 | Flowchart Engine | Mermaid.js v10 | CDN |
 | SVG Export | Native XMLSerializer | Native |
 | PNG Export | html2canvas 1.4.1 | CDN |
@@ -84,6 +84,7 @@ dynamic-sow/
 - [x] Zero build process - just open and run [#7](https://github.com/timLP79/dynamic-sow/issues/7) ✓
 - [x] GitHub Pages deployment ready [#7](https://github.com/timLP79/dynamic-sow/issues/7) ✓
 - [x] `PRODUCTNAME_NodeID` naming convention established for all flowcharts [#21](https://github.com/timLP79/dynamic-sow/issues/21) ✓
+- [x] Migrated layout and navigation to Bootstrap 5 (offcanvas sidebar, responsive breakpoints) ✓
 
 ---
 
@@ -168,7 +169,6 @@ dynamic-sow/
 ### Technical Debt
 - [ ] Consider migrating to Vite for better dev experience (but keep no-build prod)
 - [ ] Add TypeScript types for better IDE support
-- [ ] Create reusable component library for consistent styling
 - [ ] Add linting (ESLint) and formatting (Prettier)
 
 ### Integration Ideas
@@ -213,6 +213,10 @@ dynamic-sow/
 ### 2. **ES6 Modules with CDN Libraries**
 - **Why:** Modern, clean imports, no npm dependencies
 - **Trade-off:** Requires web server (can't use file://), but GitHub Pages solves this
+
+### 6. **Bootstrap 5.3.3 for Layout and Components**
+- **Why:** Replaces ~200 lines of brittle custom CSS; offcanvas-md eliminates all hamburger/overlay JS; provides a component library for future features (modals, forms, tables)
+- **Trade-off:** Additional CDN dependency (~30KB CSS), but resolved browser-compat edge cases and mobile scroll issues for free
 
 ### 3. **Data-Driven Product Cards**
 - **Why:** Adding new products is just editing one file (flowchart-data.js)
@@ -384,7 +388,7 @@ git push origin main
 
 ---
 
-**Last Updated:** February 10, 2026
-**Current Version:** 1.0
+**Last Updated:** February 11, 2026
+**Current Version:** 1.1
 **Next Milestone:** Add 3 more products (Logo, Signatures, DDC)
 **Total Issues:** 20 (8 closed, 12 open)

@@ -10,7 +10,7 @@ An interactive web application for generating and exporting product flowcharts. 
 - **Live Rendering**: Flowcharts render in real-time using Mermaid.js with custom theming
 - **Multiple Export Formats**: Download as SVG (scalable vector) or PNG (high-resolution 2x image)
 - **Smart Layout**: Subgraph grouping for clean left-to-right flow visualization
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
+- **Responsive Design**: Bootstrap 5 offcanvas sidebar — fixed panel on desktop, slide-in drawer on mobile
 - **Extensible Architecture**: Data-driven design makes adding new products simple
 - **No Build Required**: Pure HTML/CSS/JavaScript with CDN libraries
 
@@ -91,8 +91,8 @@ dynamic-sow/
 
 ### Key Files
 
-- **index.html**: Single-page application with two-panel layout (product selection + flowchart display)
-- **css/main.css**: Complete styling system with CSS Grid, responsive breakpoints, and Mermaid customization
+- **index.html**: Single-page application with Bootstrap 5 two-panel layout (offcanvas sidebar + flowchart display)
+- **css/main.css**: Custom styles layered on Bootstrap 5 — product cards, Mermaid diagram sizing, scrollbar, color variables
 - **js/flowchart-data.js**: Central repository for all product flowchart definitions (currently: NAO)
 - **js/renderer.js**: Mermaid.js initialization and flowchart rendering engine
 - **js/exporter.js**: Export functionality for SVG and PNG formats with auto-generated filenames
@@ -220,10 +220,10 @@ Full documentation: [Mermaid.js Flowchart Docs](https://mermaid.js.org/syntax/fl
 
 ## Technology Stack
 
-- **HTML5/CSS3/JavaScript (ES6 Modules)**: Core application (~500 lines)
+- **HTML5/CSS3/JavaScript (ES6 Modules)**: Core application
+- **Bootstrap 5.3.3**: Layout, responsive offcanvas sidebar, buttons (CDN)
 - **Mermaid.js v10**: Flowchart rendering engine (CDN)
 - **html2canvas 1.4.1**: PNG export functionality (CDN)
-- **CSS Grid**: Two-panel responsive layout
 - **Zero Dependencies**: No npm, webpack, or build process
 - **Static Files Only**: Can be served from any web server or GitHub Pages
 
@@ -290,9 +290,9 @@ window.mermaid.initialize({
 - For PNG export, ensure html2canvas loaded (check console)
 
 **Mobile layout issues:**
-- App is responsive and should work on mobile
-- Try landscape orientation for better viewing
-- Flowcharts may be scrollable on small screens
+- The sidebar is hidden on mobile — tap the hamburger icon (☰) in the top-left to open it
+- After selecting a product, the sidebar closes automatically
+- Flowcharts are horizontally scrollable on small screens
 
 ## Future Enhancements
 
@@ -355,4 +355,4 @@ python3 -m http.server 8000
 
 ---
 
-*Version 1.0 - February 2026*
+*Version 1.1 - February 2026*
