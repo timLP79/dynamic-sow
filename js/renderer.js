@@ -103,7 +103,7 @@ export const FlowchartRenderer = {
   showPlaceholder() {
     if (this.container) {
       this.container.innerHTML = `
-        <div class="placeholder">
+        <div class="empty-state">
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="8" y="16" width="48" height="32" rx="4"/>
             <path d="M16 24h32M16 32h32M16 40h24"/>
@@ -121,7 +121,7 @@ export const FlowchartRenderer = {
   showError(message) {
     if (this.container) {
       this.container.innerHTML = `
-        <div class="placeholder">
+        <div class="empty-state">
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="32" cy="32" r="24"/>
             <path d="M32 20v16M32 44v.5"/>

@@ -201,7 +201,7 @@ main {
    Placeholder State
    =========================== */
 
-.placeholder {
+.empty-state {
   text-align: center;
   color: var(--text-light);
   display: flex;
@@ -211,12 +211,12 @@ main {
   max-width: 400px;
 }
 
-.placeholder svg {
+.empty-state svg {
   opacity: 0.3;
   stroke: var(--text-light);
 }
 
-.placeholder p {
+.empty-state p {
   font-size: 1rem;
   line-height: 1.6;
 }
