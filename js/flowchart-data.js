@@ -56,13 +56,32 @@ export const FlowchartData = {
 
     subgraph LOGIN_Outcomes[ ]
         direction LR
-        LOGIN_E["ALLOW"] --> LOGIN_E1([Consumer successfuly logs in])
-        LOGIN_F[BLOCK] --> LOGIN_F1([Consumer gets blocked from accessing the account])
-        LOGIN_G[CHALLENGE] --> LOGIN_G1([Consumer receives MFA])
+        LOGIN_E["ALLOW"]
+        LOGIN_F[BLOCK]
+        LOGIN_G[CHALLENGE]
+    end
+
+    subgraph LOGIN_Consumer[ ]
+        direction TB
+        LOGIN_E1([Consumer successfully logs in])
+        LOGIN_F1([Consumer receives MFA])
+        LOGIN_G1([Consumer gets blocked from accessing the account])
+        LOGIN_E1 ~~~ LOGIN_F1 ~~~ LOGIN_G1
+    end
+    
+    subgraph LOGIN_MFA_Status [ ]
+        direction RL
+        LOGIN_H{MFA Challenge<br/>Status}
     end
 
     LOGIN_Input --> LOGIN_D
-
-    %%LOGIN_F1 --> LOGIN_H{MFA Challenge<br/>Status}`
+    LOGIN_Outcomes ~~~ LOGIN_Consumer
+    LOGIN_Consumer ~~~ LOGIN_MFA_Status
+    
+    %%LOGIN_F1 --> LOGIN_H{MFA Challenge Status}
+    style LOGIN_Outcomes fill: None, stroke: None
+    style LOGIN_Consumer fill: None, stroke: None
+    style LOGIN_MFA_Status fill: None, stroke: None
+    `
     }
 };
